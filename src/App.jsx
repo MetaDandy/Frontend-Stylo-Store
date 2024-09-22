@@ -8,10 +8,13 @@ import Cart from "./Cart/Pages/Cart";
 import Login from "./Login/Pages/Login";
 import { Orders, PlaceOrder } from "./Orders/Pages";
 import { Footer, Navbar, SearchBar } from "./Generals/Components";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px[9vw]">
+      <ToastContainer />
       <Navbar />
       <SearchBar />
       <Routes>

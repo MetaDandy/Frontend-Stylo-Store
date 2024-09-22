@@ -28,7 +28,7 @@ const LatestCollection = () => {
           <ProductItem
             key={index}
             price={item.price}
-            id={item.id}
+            id={item._id}
             image={item.image}
             name={item.name}
           />
