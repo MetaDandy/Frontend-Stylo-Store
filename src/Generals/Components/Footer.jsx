@@ -29,12 +29,12 @@ const Footer = () => {
             <li>benitezarroyojoseph@gmail.dom</li>
           </ul>
         </div>
-        <div className="">
-          <hr />
-          <p className="py-5 text-sm text-center">
-            Copyright 2024@ styloStore.com - All rights reserved{" "}
-          </p>
-        </div>
+      </div>
+      <div className="">
+        <hr />
+        <p className="py-5 text-sm text-center">
+          Copyright 2024@ styloStore.com - All rights reserved{" "}
+        </p>
       </div>
     </div>
   );
