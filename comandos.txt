@@ -7,3 +7,4 @@ npx tailwindcss init -p
 
 pensar en una tabla de fotos para los productos
 pensar en meter categoria sub categoria
+colocar a producto atributo bit bestseller

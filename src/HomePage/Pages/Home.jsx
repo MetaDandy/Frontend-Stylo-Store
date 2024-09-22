@@ -1,10 +1,19 @@
-import { Hero, LatestCollection } from "../Components";
+import { OurPolicy } from "../../Generals/Components";
+import {
+  BestSeller,
+  Hero,
+  LatestCollection,
+  NewsletterBox,
+} from "../Components";
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <LatestCollection />
+      <BestSeller />
+      <OurPolicy />
+      <NewsletterBox />
     </div>
   );
 };
