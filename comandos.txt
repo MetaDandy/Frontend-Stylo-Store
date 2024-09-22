@@ -3,3 +3,7 @@ npm i react-toastify
 
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+
+pensar en una tabla de fotos para los productos
+pensar en meter categoria sub categoria
