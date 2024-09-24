@@ -10,13 +10,17 @@ import { Orders, PlaceOrder } from "./Orders/Pages";
 import { Footer, Navbar, SearchBar } from "./Generals/Components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Admin from "./Admin/Admin.Routes";
 
 const App = () => {
+  const isAdminRoute = window.location.pathname.startsWith("/managment");
+
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px[9vw]">
       <ToastContainer />
-      <Navbar />
-      <SearchBar />
+      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && <SearchBar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collection" element={<Collection />} />
@@ -27,8 +31,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/managment/*" element={<Admin />} />
       </Routes>
-      <Footer />
+
+      {!isAdminRoute && <Footer />}
     </div>
   );
 };
