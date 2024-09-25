@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { handleOnChange } from "../../Helpers";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Sign Up");
@@ -11,14 +12,6 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-
-  const handleOnChange = (e) => {
-    const { value, name } = e.target;
-    setCredentials((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const onSubimitHandler = async (e) => {
     e.preventDefault();
@@ -67,7 +60,7 @@ const Login = () => {
           placeholder="Name"
           name="name"
           value={credencials.name}
-          onChange={handleOnChange}
+          onChange={(e) => handleOnChange(e, setCredentials)}
           required
         />
       )}
@@ -77,7 +70,7 @@ const Login = () => {
         placeholder="Email"
         name="email"
         value={credencials.email}
-        onChange={handleOnChange}
+        onChange={(e) => handleOnChange(e, setCredentials)}
         required
       />
       <input
@@ -86,7 +79,7 @@ const Login = () => {
         placeholder="Password"
         name="password"
         value={credencials.password}
-        onChange={handleOnChange}
+        onChange={(e) => handleOnChange(e, setCredentials)}
         required
       />
       <div className="w-full flex justify-between text-sm mt-[-8px]">
