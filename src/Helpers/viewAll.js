@@ -13,6 +13,7 @@ export const viewAll = async (route) => {
     if (!response.ok) throw new Error(`Fetch view ${route} failed`);
 
     const data = await response.json();
+    console.log(data);
     return data.data;
   } catch (error) {
     console.log(error);

@@ -1,4 +1,4 @@
-export const add = async (route, data) => {
+export const add = async (route, data, toast) => {
   try {
     const token = localStorage.getItem("token");
     let headers = {
@@ -20,11 +20,15 @@ export const add = async (route, data) => {
       }
     );
 
-    if (!response.ok) throw new Error(`Create ${route} failed`);
+    if (!response.ok) {
+      const errorData = await response.json();
+      toast.error(errorData.msg);
+      throw new Error(`Create ${route} failed`);
+    }
 
     const aData = await response.json();
-    console.log(aData);
 
+    toast.success(aData.msg);
     return aData;
   } catch (error) {
     console.log(error);

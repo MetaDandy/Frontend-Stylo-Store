@@ -68,11 +68,22 @@ const AddProduct = () => {
         console.log(pair[0] + ", " + pair[1]);
       }
 
-      const response = await add("product", formData);
-      if (response && !response.data.success) {
-        toast.error("Product not created!");
-      } else if (response) {
-        toast.success(response.msg);
+      const response = await add("product", formData, toast);
+      console.log(response);
+
+      if (response.success) {
+        setData({
+          name: "",
+          description: "",
+          categoryId: 1,
+          brandId: 1,
+          seasonId: 1,
+          price: 25,
+          bestSeller: false,
+          size: [],
+        });
+
+        setImages([null, null, null, null]);
       }
     } catch (error) {
       console.log(error);

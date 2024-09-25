@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react";
-import { viewAll } from "../../Helpers/index.js";
+import { useViewAll } from "../../Hooks/index.js";
 
 const Select = ({ title, route, sOnChange, sName, sValue }) => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetch = await viewAll(route);
-      console.log("fetch", fetch);
-
-      setData(fetch);
-    };
-
-    fetchData();
-  }, [route]);
+  const { data } = useViewAll(route);
 
   return (
     <div>
