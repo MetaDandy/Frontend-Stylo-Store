@@ -1,4 +1,3 @@
-import pt from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import { ProductItem, Title } from "../../Generals/Components";
@@ -27,20 +26,15 @@ const RelatedProduct = ({ category, subcategory }) => {
         {related.map((item, i) => (
           <ProductItem
             key={i}
-            id={item._id}
+            id={item.id}
             name={item.name}
             price={item.price}
-            image={item.image}
+            image={item.photo[0].path}
           />
         ))}
       </div>
     </div>
   );
-};
-
-RelatedProduct.propTypes = {
-  category: pt.string.isRequired,
-  subcategory: pt.string.isRequired,
 };
 
 export default RelatedProduct;

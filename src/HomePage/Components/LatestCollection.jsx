@@ -28,8 +28,8 @@ const LatestCollection = () => {
           <ProductItem
             key={index}
             price={item.price}
-            id={item._id}
-            image={item.image}
+            id={item.id}
+            image={item.photo[0].path}
             name={item.name}
           />
         ))}
