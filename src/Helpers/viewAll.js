@@ -1,11 +1,14 @@
 export const viewAll = async (route) => {
   try {
+    const token = localStorage.getItem("token");
+
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}/${route}/view`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          ...(token && { token: `Bearer ${token}` }),
         },
       }
     );

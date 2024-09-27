@@ -4,3 +4,4 @@ npm i react-toastify
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
+10 horas

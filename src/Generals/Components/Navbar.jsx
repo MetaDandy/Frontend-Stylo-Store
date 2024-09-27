@@ -3,11 +3,20 @@ import { assets } from "../../assets/assets";
 import Navlink from "./NavLink";
 import { useContext, useState } from "react";
 import { ShopContext } from "../../Context/ShopContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [visible, setVisisble] = useState(false);
 
-  const { setShowSearch, getCarCount } = useContext(ShopContext);
+  const { setShowSearch, getCarCount, setCartItems, navigate } =
+    useContext(ShopContext);
+
+  const logout = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+    setCartItems({});
+    toast.success("Logout completed");
+  };
 
   return (
     <nav className="flex items-center justify-between py-5 font-medium">
@@ -28,20 +37,34 @@ const Navbar = () => {
           alt=""
         />
         <div className="group relative">
-          <Link to="/login">
-            <img
-              src={assets.profile_icon}
-              className="w-5 cursor-pointer"
-              alt=""
-            />
-          </Link>
-          <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-            <ul className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
-              <li className=" cursor-pointer hover:text-black">My profile</li>
-              <li className=" cursor-pointer hover:text-black">Orders</li>
-              <li className=" cursor-pointer hover:text-black">Loguout</li>
-            </ul>
-          </div>
+          <img
+            src={assets.profile_icon}
+            className="w-5 cursor-pointer"
+            alt=""
+            onClick={() =>
+              localStorage.getItem("token") ? "" : navigate("/login")
+            }
+          />
+
+          {localStorage.getItem("token") && (
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+              <ul className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500">
+                <li className=" cursor-pointer hover:text-black">My profile</li>
+                <li
+                  onClick={() => navigate("/orders")}
+                  className=" cursor-pointer hover:text-black"
+                >
+                  Orders
+                </li>
+                <li
+                  onClick={() => logout()}
+                  className=" cursor-pointer hover:text-black"
+                >
+                  Loguout
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} className="w-5 min-w-5" alt="" />

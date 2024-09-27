@@ -9,6 +9,8 @@ const Login = () => {
     email: "",
     password: "",
     name: "",
+    roleId: 2,
+    phone: 0,
   });
 
   const navigate = useNavigate();
@@ -16,26 +18,49 @@ const Login = () => {
   const onSubimitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/user/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(credencials),
+      if (currentState === "Sign Up") {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/user/register`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(credencials),
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json(); // Obtiene el cuerpo del error como JSON
+          throw new Error(errorData.msg || "Sign up failed"); // Lanza el error con el mensaje del backend
         }
-      );
 
-      if (!response.ok) {
-        const errorData = await response.json(); // Obtiene el cuerpo del error como JSON
-        throw new Error(errorData.msg || "Login failed"); // Lanza el error con el mensaje del backend
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        navigate("/");
+        toast.success(data.msg);
+      } else {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/user/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(credencials),
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json(); // Obtiene el cuerpo del error como JSON
+          throw new Error(errorData.msg || "Login failed"); // Lanza el error con el mensaje del backend
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        navigate("/managment");
+        toast.success(data.msg);
       }
-
-      const data = await response.json();
-      localStorage.setItem("token", data.token);
-      navigate("/managment");
-      toast.success(data.msg);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -54,15 +79,26 @@ const Login = () => {
       {currentState === "Login" ? (
         ""
       ) : (
-        <input
-          type="text"
-          className="w-full px-3 py-2 border border-gray-800"
-          placeholder="Name"
-          name="name"
-          value={credencials.name}
-          onChange={(e) => handleOnChange(e, setCredentials)}
-          required
-        />
+        <>
+          <input
+            type="text"
+            className="w-full px-3 py-2 border border-gray-800"
+            placeholder="Name"
+            name="name"
+            value={credencials.name}
+            onChange={(e) => handleOnChange(e, setCredentials)}
+            required
+          />
+          <input
+            type="number"
+            className="w-full px-3 py-2 border border-gray-800"
+            placeholder="Phone"
+            name="phone"
+            value={credencials.phone}
+            onChange={(e) => handleOnChange(e, setCredentials)}
+            required
+          />
+        </>
       )}
       <input
         type="email"
