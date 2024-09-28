@@ -1,7 +1,15 @@
 import { AdminNavbar, Sidebar } from "./Components/index.js";
 import { Routes, Route } from "react-router-dom";
-import { AddProduct, ListProduct } from "./Products/Components/index.js";
 import { Order } from "./Orders/Components/index.js";
+import Products from "./Products/Routes/Products.routes.jsx";
+import Brand from "./Brand/Routes/brand.routes.jsx";
+import Category from "./Category/Routes/Category.routes.jsx";
+import CategoryType from "./CategoryType/Routes/CategoryType.routes.jsx";
+import Season from "./Season/Routes/Season.routes.jsx";
+import User from "./User/Routes/User.routes.jsx";
+import OrderType from "./OrderType/Routes/OrderType.routes.jsx";
+import Payment from "./Payment/Routes/Payment.routes.jsx";
+import Role from "./Role/Routes/Role.routes.jsx";
 
 const Admin = () => {
   return (
@@ -12,9 +20,16 @@ const Admin = () => {
         <Sidebar />
         <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
           <Routes>
-            <Route path="add" element={<AddProduct />} />
-            <Route path="list" element={<ListProduct />} />
-            <Route path="order" element={<Order />} />
+            <Route path="product/*" element={<Products />} />
+            <Route path="order/list" element={<Order />} />
+            <Route path="brand/*" element={<Brand />} />
+            <Route path="category/*" element={<Category />} />
+            <Route path="categoryType/*" element={<CategoryType />} />
+            <Route path="season/*" element={<Season />} />
+            <Route path="user/*" element={<User />} />
+            <Route path="orderType/*" element={<OrderType />} />
+            <Route path="payment/*" element={<Payment />} />
+            <Route path="role/*" element={<Role />} />
           </Routes>
         </div>
       </div>
