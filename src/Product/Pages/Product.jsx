@@ -13,11 +13,10 @@ const Product = () => {
   const [size, setSize] = useState("");
   const { data } = useViewOne("product", Number(id));
 
-  console.log(size);
-
   useEffect(() => {
     if (data && data.photo.length > 0) {
       setImage(data.photo[0].path); // Establece la imagen inicial
+      console.log(data.category.name, data.category.typeCategory.name);
     }
   }, [data]);
 
@@ -112,7 +111,10 @@ const Product = () => {
         </div>
       </div>
       {/* ----------- Display related products ------------------- */}
-      <RelatedProduct category={data.category} subcategory={data.subCategory} />
+      <RelatedProduct
+        category={data.category.name}
+        subcategory={data.category.typeCategory.name}
+      />
     </div>
   );
 };

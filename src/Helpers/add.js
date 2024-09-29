@@ -15,8 +15,8 @@ export const add = async (route, data, toast) => {
       `${import.meta.env.VITE_BACKEND_URL}/${route}/create`,
       {
         method: "POST",
-        headers, // Adjuntar las cabeceras
-        body: data, // Aquí el body puede ser un FormData o JSON
+        headers,
+        body: data,
       }
     );
 

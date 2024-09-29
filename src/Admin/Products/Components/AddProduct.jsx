@@ -3,6 +3,7 @@ import { assets } from "../../../assets/admin_assets/assets.js";
 import { Select } from "../../Components/index.js";
 import { add, handleOnChange } from "../../../Helpers";
 import { toast } from "react-toastify";
+import { useViewAll } from "../../../Hooks/index.js";
 
 const AddProduct = () => {
   const [images, setImages] = useState([null, null, null, null]);
@@ -17,6 +18,8 @@ const AddProduct = () => {
     bestSeller: false,
     size: [],
   });
+
+  const { data: sizez } = useViewAll("size");
 
   const handleImageChange = (index) => (e) => {
     const file = e.target.files[0];
@@ -177,15 +180,15 @@ const AddProduct = () => {
       <div className="">
         <p className="mb-2">Product Sizes</p>
         <div className="flex gap-3">
-          {["S", "M", "L", "XL", "XXL"].map((size) => (
+          {sizez.map((size) => (
             <div className="" key={size}>
               <p
                 className={`bg-slate-200 px-3 py-1 cursor-pointer ${
-                  data.size.includes(size) ? "bg-blue-500 text-white" : ""
+                  data.size.includes(size.id) ? "bg-blue-500 text-white" : ""
                 }`}
-                onClick={() => handleSizeToggle(size)}
+                onClick={() => handleSizeToggle(size.id)}
               >
-                {size}
+                {size.id}
               </p>
             </div>
           ))}

@@ -26,6 +26,7 @@ const Navbar = () => {
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <Navlink to="" title="HOME" />
         <Navlink to="collection" title="COLLECTION" />
+        <Navlink to="catalog" title="CATALOG" />
         <Navlink to="about" title="ABOUT" />
         <Navlink to="contact" title="CONTACT" />
       </ul>

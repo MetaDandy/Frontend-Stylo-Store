@@ -10,6 +10,11 @@ import User from "./User/Routes/User.routes.jsx";
 import OrderType from "./OrderType/Routes/OrderType.routes.jsx";
 import Payment from "./Payment/Routes/Payment.routes.jsx";
 import Role from "./Role/Routes/Role.routes.jsx";
+import Currency from "./Currency/Routes/Currency.routes.jsx";
+import Branch from "./Branch/Routes/Branch.routes.jsx";
+import Size from "./Size/Routes/Size.routes.jsx";
+import Inventory from "./Inventory/Routes/Inventory.routes.jsx";
+import Catalog from "./Catalog/Routes/Catalog.routes.jsx";
 
 const Admin = () => {
   return (
@@ -30,6 +35,11 @@ const Admin = () => {
             <Route path="orderType/*" element={<OrderType />} />
             <Route path="payment/*" element={<Payment />} />
             <Route path="role/*" element={<Role />} />
+            <Route path="currency/*" element={<Currency />} />
+            <Route path="branch/*" element={<Branch />} />
+            <Route path="size/*" element={<Size />} />
+            <Route path="inventory/*" element={<Inventory />} />
+            <Route path="catalog/*" element={<Catalog />} />
           </Routes>
         </div>
       </div>

@@ -82,6 +82,16 @@ const Sidebar = () => {
                   path="season/list"
                   title="List Season"
                 />
+                <SideBarItem
+                  assets={assets.add_icon}
+                  path="size/add"
+                  title="Add size"
+                />
+                <SideBarItem
+                  assets={assets.order_icon}
+                  path="size/list"
+                  title="List size"
+                />
               </ul>
             </div>
           )}
@@ -122,6 +132,16 @@ const Sidebar = () => {
                   path="payment/list"
                   title="List payment"
                 />
+                <SideBarItem
+                  assets={assets.add_icon}
+                  path="currency/add"
+                  title="Add currency"
+                />
+                <SideBarItem
+                  assets={assets.order_icon}
+                  path="currency/list"
+                  title="List currency"
+                />
               </ul>
             </div>
           )}
@@ -138,9 +158,39 @@ const Sidebar = () => {
             <div className="px-4 pt-2 pb-2 text-sm text-gray-300">
               <ul>
                 <SideBarItem
+                  assets={assets.add_icon}
+                  path="branch/add"
+                  title="Add branch"
+                />
+                <SideBarItem
                   assets={assets.order_icon}
-                  path="order/list"
-                  title="List Orders"
+                  path="branch/list"
+                  title="List branch"
+                />
+                <SideBarItem
+                  assets={assets.add_icon}
+                  path="inventory/add"
+                  title="Add Inventory"
+                />
+                <SideBarItem
+                  assets={assets.order_icon}
+                  path="inventory/list"
+                  title="List inventory"
+                />
+                <SideBarItem
+                  assets={assets.add_icon}
+                  path="catalog/add"
+                  title="Add catalog"
+                />
+                <SideBarItem
+                  assets={assets.add_icon}
+                  path="catalog/product"
+                  title="Add product to catalog"
+                />
+                <SideBarItem
+                  assets={assets.order_icon}
+                  path="catalog/list"
+                  title="List catalog"
                 />
               </ul>
             </div>
@@ -158,8 +208,8 @@ const Sidebar = () => {
             <div className="px-4 pt-2 pb-2 text-sm text-gray-300">
               <ul>
                 <SideBarItem
-                  assets={assets.order_icon}
-                  path="user/list"
+                  assets={assets.add_icon}
+                  path="user/add"
                   title="Add User"
                 />
                 <SideBarItem
@@ -168,7 +218,7 @@ const Sidebar = () => {
                   title="List Users"
                 />
                 <SideBarItem
-                  assets={assets.order_icon}
+                  assets={assets.add_icon}
                   path="role/add"
                   title="Add Role"
                 />

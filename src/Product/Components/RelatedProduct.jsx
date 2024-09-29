@@ -9,14 +9,17 @@ const RelatedProduct = ({ category, subcategory }) => {
   useEffect(() => {
     if (products.length > 0) {
       let productsCopy = products.slice();
-      productsCopy = productsCopy.filter((item) => category === item.category);
       productsCopy = productsCopy.filter(
-        (item) => subcategory === item.subCategory
+        (item) => category === item.category.name
+      );
+      productsCopy = productsCopy.filter(
+        (item) => subcategory === item.category.typeCategory.name
       );
 
       setRelated(productsCopy.slice(0, 5));
     }
   }, [products]);
+
   return (
     <div className="my-24">
       <div className="text-center text-3xl py-2">

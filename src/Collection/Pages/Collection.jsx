@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import { assets } from "../../assets/assets";
 import { ProductItem, Title } from "../../Generals/Components";
+import { useViewAll } from "../../Hooks";
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -10,6 +11,9 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relavent");
+
+  const { data } = useViewAll("category");
+  const { data: dato } = useViewAll("categoryType");
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value))
@@ -33,12 +37,12 @@ const Collection = () => {
 
     if (category.length > 0)
       productsCopy = productsCopy.filter((item) =>
-        category.includes(item.category)
+        category.includes(item.category.name)
       );
 
     if (subCategory.length > 0)
       productsCopy = productsCopy.filter((item) =>
-        subCategory.includes(item.subCategory)
+        subCategory.includes(item.category.typeCategory.name)
       );
 
     setFilterProducts(productsCopy);
@@ -95,33 +99,18 @@ const Collection = () => {
         >
           <p className="mb-3 text-sm font-medium ">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700"></div>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value="Men"
-              onChange={toggleCategory}
-            />{" "}
-            Men {/*Clothes  */}
-          </p>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value="Women"
-              onChange={toggleCategory}
-            />{" "}
-            Women {/*Clothes  */}
-          </p>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value="Kids"
-              onChange={toggleCategory}
-            />{" "}
-            Kids {/*Clothes  */}
-          </p>
+          {data &&
+            data.map((item) => (
+              <p className="flex gap-2" key={item.name}>
+                <input
+                  type="checkbox"
+                  className="w-3"
+                  value={item.name}
+                  onChange={toggleCategory}
+                />
+                {item.name}
+              </p>
+            ))}
         </div>
         {/* Subcategory filter */}
         <div
@@ -129,35 +118,20 @@ const Collection = () => {
             showFilter ? "" : "hidden"
           } sm:block`}
         >
-          <p className="mb-3 text-sm font-medium ">Type</p>
+          <p className="mb-3 text-sm font-medium ">CATEGORIES TYPES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700"></div>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value={"Topwear"}
-              onChange={toggleSubCategory}
-            />{" "}
-            Topwear {/*Clothes  */}
-          </p>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value={"Bottomwear"}
-              onChange={toggleSubCategory}
-            />{" "}
-            Bottomwear {/*Clothes  */}
-          </p>
-          <p className="flex gap-2">
-            <input
-              type="checkbox"
-              className="w-3"
-              value={"Winterwear"}
-              onChange={toggleSubCategory}
-            />{" "}
-            Winterwear {/*Clothes  */}
-          </p>
+          {dato &&
+            dato.map((item) => (
+              <p className="flex gap-2" key={item.name}>
+                <input
+                  type="checkbox"
+                  className="w-3"
+                  value={item.name}
+                  onChange={toggleSubCategory}
+                />
+                {item.name}
+              </p>
+            ))}
         </div>
       </section>
       {/* Right side */}
@@ -167,7 +141,7 @@ const Collection = () => {
           {/* Product Sort */}
           <select
             name=""
-            className="border-2 border-gray-300 text-sm px-2"
+            className="border-2 border-gray-300 text-sm px-2 "
             onChange={(e) => setSortType(e.target.value)}
           >
             <option value="relavent">Sort by: Relevant</option>
