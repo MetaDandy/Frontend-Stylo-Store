@@ -2,7 +2,7 @@ import { AdminNavbar, Sidebar } from "./Components/index.js";
 import { Routes, Route } from "react-router-dom";
 import { Order } from "./Orders/Components/index.js";
 import Products from "./Products/Routes/Products.routes.jsx";
-import Brand from "./Brand/Routes/brand.routes.jsx";
+import Brand from "./Brand/Routes/Brand.routes.jsx";
 import Category from "./Category/Routes/Category.routes.jsx";
 import CategoryType from "./CategoryType/Routes/CategoryType.routes.jsx";
 import Season from "./Season/Routes/Season.routes.jsx";
